@@ -9,19 +9,30 @@ import { useEffect, useState } from "react";
 
 const App = () => {
   const [cats, setCats] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchCats = async () => {
-      const response = await fetch(
-        "https://api.thecatapi.com/v1/images/search?limit=10"
-      );
-
-      const data = await response.json();
-      setCats(data);
+      try {
+        const response = await fetch(
+          "https://api.thecatapi.com/v1/images/search?limit=10"
+        );
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const data = await response.json();
+        setCats(data);
+      } catch (error) {
+        setError(error.message);
+      }
     };
-    console.log(cats);
     fetchCats();
   }, []);
+  if (error !== null) {
+    return <h1>{error}</h1>;
+  }
+  console.log(cats);
 
   return (
     <BrowserRouter>
@@ -32,7 +43,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home allCats={cats} />}></Route>
-        <Route path="/about" element={<About />}></Route>
+        <Route path="/about/:catId" element={<About />}></Route>
       </Routes>
     </BrowserRouter>
   );

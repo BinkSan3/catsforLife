@@ -5,7 +5,7 @@ const Home = (props) => {
       {props.allCats.map((cat, index) => {
         return (
           <div key={index}>
-            <img src={cat.url} alt="Cat" />;
+            <img src={cat.url} alt="Cat" />
           </div>
         );
       })}
