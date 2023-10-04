@@ -1,6 +1,13 @@
 import { faker } from "@faker-js/faker";
 
+import { useState } from "react";
 const Home = (props) => {
+  const [basket, setBasket] = useState([]);
+
+  const toggleBasket = () => {
+    setBasket(!basket);
+  };
+
   return (
     <div>
       <h1>Homepage</h1>
@@ -12,6 +19,7 @@ const Home = (props) => {
             <img src={cat.url} alt="Cat" />
             <p>{randomName}</p>
             <p>£{randomPrice}</p>
+            <button onClick={toggleBasket}>Add to Basket</button>
           </div>
         );
       })}

@@ -2,6 +2,8 @@ import "./App.css";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
+import { ReactModal } from "react-modal";
+
 import Home from "./pages/home";
 import About from "./pages/about";
 
@@ -10,6 +12,7 @@ import { useEffect, useState } from "react";
 const App = () => {
   const [cats, setCats] = useState([]);
   const [error, setError] = useState(null);
+  const [basket, setBasket] = useState([]);
 
   useEffect(() => {
     const fetchCats = async () => {
