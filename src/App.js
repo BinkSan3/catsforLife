@@ -7,8 +7,11 @@ import About from "./pages/about";
 
 import { useEffect, useState } from "react";
 
+import { faker } from "@faker-js/faker";
+
 const App = () => {
   const [cats, setCats] = useState([]);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -17,12 +20,20 @@ const App = () => {
         const response = await fetch(
           "https://api.thecatapi.com/v1/images/search?limit=10"
         );
-        console.log(response);
         if (!response.ok) {
           throw new Error(response.status);
         }
         const data = await response.json();
-        setCats(data);
+
+        const catName = `${faker.name.firstName()} ${faker.name.lastName()}`;
+        const catAge = faker.number.int({ max: 20 });
+        const catsNames = data.map((cat) => ({
+          ...cat,
+          name: catName,
+          age: catAge,
+        }));
+
+        setCats(catsNames);
       } catch (error) {
         setError(error.message);
       }
