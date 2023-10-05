@@ -10,8 +10,9 @@ const Home = (props) => {
           <div key={index}>
             <img src={cat.url} alt="Cat" />
             <p>Name: {cat.name}</p>
+
             <p>Age: {cat.age}</p>
-            <p>Gender: {cat.gender}</p>
+            <p>{cat.gender}</p>
             <p>{cat.width}</p>
           </div>
         );
