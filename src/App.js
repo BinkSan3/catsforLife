@@ -30,10 +30,12 @@ const App = () => {
 
         const catName = `${faker.name.firstName()} ${faker.name.lastName()}`;
         const catAge = faker.number.int({ max: 20 });
+        const catGender = faker.person.sexType();
         const catsNames = data.map((cat) => ({
           ...cat,
           name: catName,
           age: catAge,
+          gender: catGender,
         }));
 
         setCats(catsNames);

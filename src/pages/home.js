@@ -18,8 +18,8 @@ const Home = (props) => {
             <button onClick={toggleBasket}>Add to Basket</button>
             <p>Name: {cat.name}</p>
             <p>age: {cat.age}</p>
+            <p>Gender: {cat.gender}</p>
             <p>{cat.width}</p>
-
           </div>
         );
       })}
