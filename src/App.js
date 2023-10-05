@@ -22,7 +22,6 @@ const App = () => {
         }
         const data = await response.json();
 
-
         const catsNames = data.map((cat) => ({
           ...cat,
           name: `${faker.person.firstName()} ${faker.person.lastName()}`,

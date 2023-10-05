@@ -14,7 +14,6 @@ const Home = (props) => {
             <p>Age: {cat.age}</p>
             <p>{cat.gender}</p>
             <p>{cat.width}</p>
-
           </div>
         );
       })}
