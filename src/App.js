@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import Home from "./pages/home";
 import About from "./pages/about";
+import Cart from "./components/Cart";
 
 const App = () => {
   const [cats, setCats] = useState([]);
   const [error, setError] = useState(null);
-  const [basket, setBasket] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchCats = async () => {
@@ -53,6 +54,10 @@ const App = () => {
   }
   console.log(cats);
 
+  const addToCart = (cat) => {
+    setCart([...cart, cat]);
+  };
+
   return (
     <BrowserRouter>
       <nav>
@@ -61,11 +66,15 @@ const App = () => {
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home allCats={cats} />}></Route>
+        <Route
+          path="/"
+          element={<Home allCats={cats} addToCart={addToCart} />}
+        ></Route>
         <Route
           path="/about/:catId"
           element={<About singleCat={cats} />}
         ></Route>
+        <Route path="/cart" element={<Cart cart={cart} />} />
       </Routes>
     </BrowserRouter>
   );
