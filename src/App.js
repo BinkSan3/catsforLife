@@ -1,19 +1,13 @@
 import "./App.css";
-
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-
 import { ReactModal } from "react-modal";
-
+import { useEffect, useState } from "react";
+import { faker } from "@faker-js/faker";
 import Home from "./pages/home";
 import About from "./pages/about";
 
-import { useEffect, useState } from "react";
-
-import { faker } from "@faker-js/faker";
-
 const App = () => {
   const [cats, setCats] = useState([]);
-
   const [error, setError] = useState(null);
   const [basket, setBasket] = useState([]);
 
@@ -28,7 +22,7 @@ const App = () => {
         }
         const data = await response.json();
 
-        const catName = `${faker.name.firstName()} ${faker.name.lastName()}`;
+        const catName = `${faker.person.firstName()} ${faker.person.lastName()}`;
         const catAge = faker.number.int({ max: 20 });
         const catGender = faker.person.sexType();
         const catsNames = data.map((cat) => ({
