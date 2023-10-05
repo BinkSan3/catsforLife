@@ -10,10 +10,10 @@ const Home = (props) => {
           <div key={index}>
             <img src={cat.url} alt="Cat" />
             <p>Name: {cat.name}</p>
-
             <p>Age: {cat.age}</p>
-            <p>{cat.gender}</p>
+            <p>Gender: {cat.gender}</p>
             <p>{cat.width}</p>
+            <button onClick={() => props.addToCart(cat)}>Add to Cart</button>
           </div>
         );
       })}
