@@ -22,12 +22,24 @@ const App = () => {
         }
         const data = await response.json();
 
-        const catsNames = data.map((cat) => ({
-          ...cat,
-          name: `${faker.person.firstName()} ${faker.person.lastName()}`,
-          age: faker.number.int({ max: 20 }),
-          gender: faker.person.sexType(),
-        }));
+        const catsNames = data.map((cat) => {
+          const catGender = faker.person.sexType();
+          return {
+            ...cat,
+            gender: catGender,
+            name: `${faker.person.firstName(
+              catGender
+            )} ${faker.person.lastName()}`,
+            age: faker.number.int({ max: 20 }),
+
+            breed: faker.animal.cat(),
+            price: faker.number.int({ max: 500 }),
+            sign: faker.person.zodiacSign(),
+            job: faker.person.jobType(),
+
+            county: faker.location.county(),
+          };
+        });
 
         setCats(catsNames);
       } catch (error) {
@@ -50,7 +62,10 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home allCats={cats} />}></Route>
-        <Route path="/about/:catId" element={<About />}></Route>
+        <Route
+          path="/about/:catId"
+          element={<About singleCat={cats} />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { useState } from "react";
+import { Link } from "react-router-dom/dist";
 
 const Home = (props) => {
   return (
@@ -8,12 +9,13 @@ const Home = (props) => {
       {props.allCats.map((cat, index) => {
         return (
           <div key={index}>
-            <img src={cat.url} alt="Cat" />
+            <Link to={`./about/${cat.id}`}>
+              <img src={cat.url} alt="Cat" />
+            </Link>
+
             <p>Name: {cat.name}</p>
 
-            <p>Age: {cat.age}</p>
-            <p>{cat.gender}</p>
-            <p>{cat.width}</p>
+            <p>£{cat.price}</p>
           </div>
         );
       })}
