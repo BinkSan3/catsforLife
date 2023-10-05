@@ -22,14 +22,12 @@ const App = () => {
         }
         const data = await response.json();
 
-        const catName = `${faker.person.firstName()} ${faker.person.lastName()}`;
-        const catAge = faker.number.int({ max: 20 });
-        const catGender = faker.person.sexType();
+
         const catsNames = data.map((cat) => ({
           ...cat,
-          name: catName,
-          age: catAge,
-          gender: catGender,
+          name: `${faker.person.firstName()} ${faker.person.lastName()}`,
+          age: faker.number.int({ max: 20 }),
+          gender: faker.person.sexType(),
         }));
 
         setCats(catsNames);
