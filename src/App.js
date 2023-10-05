@@ -64,6 +64,7 @@ const App = () => {
         <Route path="/about/:catId" element={<About />}></Route>
         <Route path="/cart" element={<Cart cart={cart} />} />
       </Routes>
+      <div></div>
     </BrowserRouter>
   );
 };
