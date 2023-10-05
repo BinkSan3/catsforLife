@@ -23,7 +23,6 @@ const App = () => {
         }
         const data = await response.json();
 
-
         const catsNames = data.map((cat) => {
           const catGender = faker.person.sexType();
           return {
@@ -67,20 +66,15 @@ const App = () => {
       </nav>
 
       <Routes>
-<<<<<<< HEAD
-        <Route path="/" element={<Home allCats={cats} />}></Route>
-        <Route
-          path="/about/:catId"
-          element={<About singleCat={cats} />}
-        ></Route>
-=======
         <Route
           path="/"
           element={<Home allCats={cats} addToCart={addToCart} />}
         ></Route>
-        <Route path="/about/:catId" element={<About />}></Route>
+        <Route
+          path="/about/:catId"
+          element={<About singleCat={cats} />}
+        ></Route>
         <Route path="/cart" element={<Cart cart={cart} />} />
->>>>>>> 2e675e1 (Basket Attempt)
       </Routes>
     </BrowserRouter>
   );
