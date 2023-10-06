@@ -12,7 +12,6 @@ const App = () => {
   const [error, setError] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [cart, setCart] = useState([]);
-  const [catInBag, setCatInBag] = useState(false);
 
   useEffect(() => {
     const fetchCats = async () => {
@@ -41,6 +40,7 @@ const App = () => {
             job: faker.person.jobType(),
 
             county: faker.location.county(),
+            bought: false,
           };
         });
 
@@ -64,23 +64,28 @@ const App = () => {
     setModalOpen(false);
   };
 
-  // const toggleCatCartButton = () => {
-  //   setCatInBag(!catInBag);
-  //   if (catInBag == true) {
-  //     toggleCatCartButton(null);
+  // const toggleCatCartButton = (cat) => {
+  //   cat.bought = !cat.bought;
+  //   console.log(cat.bought);
+  //   if (cat.bought == true) {
+  //     setCart([...cart]);
   //   }
   // };
 
-  // const addToCart = (catToAdd) => {
-  //   // toggleCatCartButton();
-  //   setCart([...cart, catToAdd]);
-  // };
+  const addToCart = (catToAdd) => {
+    if (catToAdd.bought === false) {
+      catToAdd.bought = true;
+      setCart([...cart, catToAdd]);
+    } else {
+      setCart(cart);
+    }
+  };
 
-  const removeFromCart = (catId) => {
-    const updatedCart = cart.map((cat) =>
-      cat.id === catId ? { ...cat, quantity: cat.quantity - 1 } : cat
-    );
-    setCart(updatedCart.filter((cat) => cat.quantity > 0));
+  const removeFromCart = (catToRemove, index) => {
+    let storedCart = [...cart];
+    storedCart.splice(index, 1);
+    setCart(storedCart);
+    catToRemove.bought = false;
   };
 
   return (
