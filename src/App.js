@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { ReactModal } from "react-modal";
 import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import Home from "./pages/home";
@@ -74,6 +73,7 @@ const App = () => {
   //   }
   // };
 
+
   const addToCart = (catToAdd) => {
     if (catToAdd.bought === false) {
       catToAdd.bought = true;
@@ -99,6 +99,7 @@ const App = () => {
     let storedCart = [...cart];
     storedCart.splice(0, removeAll.length);
     setCart(storedCart);
+
   };
 
   return (
