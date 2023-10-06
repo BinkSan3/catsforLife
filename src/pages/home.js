@@ -13,7 +13,7 @@ const Home = (props) => {
             </Link>
 
             <p>Name: {cat.name}</p>
-            <button onClick={() => props.addToCart(cat)}>Add</button>
+            <button onClick={() => props.addToCart(cat)}>Add to cart</button>
             <p>£{cat.price}</p>
             <p>Age: {cat.age}</p>
             <p>Gender: {cat.gender}</p>

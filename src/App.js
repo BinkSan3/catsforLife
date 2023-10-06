@@ -7,6 +7,8 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import CartModal from "./components/Cart";
 
+import shoppingCartIcon from "./assets/shoppingCart.svg";
+
 const App = () => {
   const [cats, setCats] = useState([]);
   const [error, setError] = useState(null);
@@ -88,6 +90,17 @@ const App = () => {
     catToRemove.bought = false;
   };
 
+  const checkout = (removeAll) => {
+    let storedCats = [...cats].map((element) => {
+      return { ...element, bought: false };
+    });
+    console.log(storedCats);
+    setCats(storedCats);
+    let storedCart = [...cart];
+    storedCart.splice(0, removeAll.length);
+    setCart(storedCart);
+  };
+
   // const removeFromCart = (catToRemove) => {
   //   const updatedCart = cart.filter((cat) => cat.id !== catToRemove.id);
   //   setCart(updatedCart);
@@ -97,13 +110,19 @@ const App = () => {
     <BrowserRouter>
       <nav>
         <Link to="/">Home</Link>
-        <button onClick={openModal}>Open Cart({cart.length})</button>
+
+        <button onClick={openModal}>
+          {" "}
+          <img src={shoppingCartIcon} alt="cart icon" />({cart.length})
+        </button>
+
         <CartModal
           isOpen={isModalOpen}
           onClose={closeModal}
           addToCart={addToCart}
           removeFromCart={removeFromCart}
           cart={cart}
+          checkout={checkout}
         />
       </nav>
       <Routes>
@@ -120,7 +139,14 @@ const App = () => {
         ></Route>
         <Route
           path="/about/:catId"
-          element={<About singleCat={cats} />}
+          element={
+            <About
+              singleCat={cats}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              cart={cart}
+            />
+          }
         ></Route>
       </Routes>
     </BrowserRouter>

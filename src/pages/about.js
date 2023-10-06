@@ -14,6 +14,7 @@ const About = (props) => {
     <>
       <h1>About Page</h1>;
       <img src={cat.url} alt="Cat" />
+      <button onClick={() => props.addToCart(cat)}>Add to cart</button>
       <p>Name: {cat.name}</p>
       <p>Age: {cat.age}</p>
       <p>{cat.breed}</p>
