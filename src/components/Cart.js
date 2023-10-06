@@ -3,11 +3,21 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-const CartModal = ({ isOpen, onClose, addToCart, removeFromCart, cart }) => {
+const CartModal = ({
+  isOpen,
+  onClose,
+  addToCart,
+  removeFromCart,
+  cart,
+  checkout,
+}) => {
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose}>
-      <h1>Shopping Cart</h1>
+      <div>
+        <h1>Shopping Cart</h1>
+        <button onClick={onClose}>Close</button>
+      </div>
 
       {cart.map((cat, index) => (
         <div key={index}>
@@ -17,7 +27,8 @@ const CartModal = ({ isOpen, onClose, addToCart, removeFromCart, cart }) => {
       ))}
 
       <h3>Your Total: £{totalPrice}</h3>
-      <button onClick={onClose}>Close</button>
+      <button onClick={onClose}>Continue shopping</button>
+      <button onClick={() => checkout(cart)}>Checkout</button>
     </Modal>
   );
 };
