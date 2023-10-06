@@ -73,7 +73,6 @@ const App = () => {
   //   }
   // };
 
-
   const addToCart = (catToAdd) => {
     if (catToAdd.bought === false) {
       catToAdd.bought = true;
@@ -99,8 +98,12 @@ const App = () => {
     let storedCart = [...cart];
     storedCart.splice(0, removeAll.length);
     setCart(storedCart);
-
   };
+
+  // const removeFromCart = (catToRemove) => {
+  //   const updatedCart = cart.filter((cat) => cat.id !== catToRemove.id);
+  //   setCart(updatedCart);
+  // };
 
   return (
     <BrowserRouter>
@@ -109,7 +112,8 @@ const App = () => {
 
         <button onClick={openModal}>
           {" "}
-          <img src={shoppingCartIcon} alt="cart icon" />({cart.length})
+          <img src={shoppingCartIcon} alt="cart icon" />
+          {cart.length}
         </button>
 
         <CartModal
