@@ -68,7 +68,9 @@ const AtcButton = styled.button`
 const CatInfo = styled.div`
   margin: 20px;
   background-color: rgba(255 221 238);
-
+  font-family: "Meows";
+  font-weight: 100;
+  color: #ff30c1;
   height: 400px;
   width: 400px;
   border-radius: 10px;
