@@ -73,7 +73,6 @@ const App = () => {
   //   }
   // };
 
-
   const addToCart = (catToAdd) => {
     if (catToAdd.bought === false) {
       catToAdd.bought = true;
@@ -99,7 +98,6 @@ const App = () => {
     let storedCart = [...cart];
     storedCart.splice(0, removeAll.length);
     setCart(storedCart);
-
   };
 
   // const removeFromCart = (catToRemove) => {

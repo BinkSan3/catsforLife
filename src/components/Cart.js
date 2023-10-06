@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import styled from "styled-components";
 
 Modal.setAppElement("#root");
 
@@ -13,7 +14,7 @@ const CartModal = ({
 }) => {
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose}>
+    <ModalDiv isOpen={isOpen} onRequestClose={onClose}>
       <div>
         <h1>Shopping Cart</h1>
         <button onClick={onClose}>Close</button>
@@ -29,8 +30,12 @@ const CartModal = ({
       <h3>Your Total: £{totalPrice}</h3>
       <button onClick={onClose}>Continue shopping</button>
       <button onClick={() => checkout(cart)}>Checkout</button>
-    </Modal>
+    </ModalDiv>
   );
 };
 
 export default CartModal;
+
+const ModalDiv = styled.Modal`
+  width: 33%;
+`;
