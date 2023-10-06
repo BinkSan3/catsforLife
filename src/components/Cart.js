@@ -1,16 +1,17 @@
 import React from "react";
 import Modal from "react-modal";
 
-const CartModal = ({ isOpen, onClose, addToCart, removeFromCart, cart }) => {
+Modal.setAppElement("#root");
+
+const CartModal = ({ isOpen, onClose, removeFromCart, cart }) => {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose}>
       <h1>Shopping Cart</h1>
       <ul>
-        {cart.map((cat) => (
-          <li key={cat.id}>
+        {cart.map((cat, index) => (
+          <li key={index}>
             {cat.name} - {cat.price}
-            <button onClick={() => removeFromCart(cat.id)}>Remove</button>
-            <button onClick={() => addToCart(cat.id)}>Add</button>
+            <button onClick={() => removeFromCart(cat, index)}>Remove</button>
           </li>
         ))}
       </ul>
