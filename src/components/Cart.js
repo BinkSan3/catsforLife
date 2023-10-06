@@ -3,7 +3,7 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-const CartModal = ({ isOpen, onClose, addToCart, removeFromCart, cart }) => {
+const CartModal = ({ isOpen, onClose, removeFromCart, cart }) => {
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose}>

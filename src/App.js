@@ -97,7 +97,6 @@ const App = () => {
     <BrowserRouter>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
         <button onClick={openModal}>Open Cart({cart.length})</button>
         <CartModal
           isOpen={isModalOpen}
