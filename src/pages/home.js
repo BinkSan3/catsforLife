@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom/dist";
+import styled from "styled-components";
 import "./home.css";
 
 const Home = (props) => {
@@ -9,15 +10,18 @@ const Home = (props) => {
         return (
           <div className="catGrid" key={index}>
             <Link to={`./about/${cat.id}`}>
-              <img className="catImage" src={cat.url} alt="Cat" />
+              <div id="imgHolder">
+                <img className="catImage" src={cat.url} alt="Cat" />
+                <button onClick={() => props.addToCart(cat)}>
+                  Add to cart
+                </button>
+              </div>
             </Link>
+            <div className="catInfo">
+              <p>Name: {cat.name}</p>
 
-            <p>Name: {cat.name}</p>
-            <button onClick={() => props.addToCart(cat)}>Add to cart</button>
-            <p>£{cat.price}</p>
-            <p>Age: {cat.age}</p>
-            <p>Gender: {cat.gender}</p>
-            <p>{cat.width}</p>
+              <p>£{cat.price}</p>
+            </div>
           </div>
         );
       })}

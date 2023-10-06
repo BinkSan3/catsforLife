@@ -102,11 +102,6 @@ const App = () => {
 
   };
 
-  // const removeFromCart = (catToRemove) => {
-  //   const updatedCart = cart.filter((cat) => cat.id !== catToRemove.id);
-  //   setCart(updatedCart);
-  // };
-
   return (
     <BrowserRouter>
       <nav>
