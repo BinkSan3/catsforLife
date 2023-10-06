@@ -100,6 +100,11 @@ const App = () => {
     setCart(storedCart);
   };
 
+  // const removeFromCart = (catToRemove) => {
+  //   const updatedCart = cart.filter((cat) => cat.id !== catToRemove.id);
+  //   setCart(updatedCart);
+  // };
+
   return (
     <BrowserRouter>
       <nav>
@@ -107,7 +112,8 @@ const App = () => {
 
         <button onClick={openModal}>
           {" "}
-          <img src={shoppingCartIcon} alt="cart icon" />({cart.length})
+          <img src={shoppingCartIcon} alt="cart icon" />
+          {cart.length}
         </button>
 
         <CartModal
