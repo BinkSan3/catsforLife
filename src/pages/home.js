@@ -1,16 +1,15 @@
-import { faker } from "@faker-js/faker";
-import { useState } from "react";
 import { Link } from "react-router-dom/dist";
+import "./home.css";
 
 const Home = (props) => {
   return (
     <div>
-      <h1>Homepage</h1>
+      <h1>Cats 4 Lyf!</h1>
       {props.allCats.map((cat, index) => {
         return (
-          <div key={index}>
+          <div className="catGrid" key={index}>
             <Link to={`./about/${cat.id}`}>
-              <img src={cat.url} alt="Cat" />
+              <img className="catImage" src={cat.url} alt="Cat" />
             </Link>
 
             <p>Name: {cat.name}</p>

@@ -25,6 +25,7 @@ const About = (props) => {
       <p>
         <em>{cat.county}</em>
       </p>
+      <button onClick={() => props.addToCart(cat)}>Add</button>
     </>
   );
 };
