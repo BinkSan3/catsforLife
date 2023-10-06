@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import Home from "./pages/home";
 import About from "./pages/about";
-import Cart from "./components/Cart";
+import CartModal from "./components/Cart";
 
 const App = () => {
   const [cats, setCats] = useState([]);
   const [error, setError] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [cart, setCart] = useState([]);
+  const [catInBag, setCatInBag] = useState(false);
 
   useEffect(() => {
     const fetchCats = async () => {
@@ -54,8 +56,31 @@ const App = () => {
   }
   console.log(cats);
 
-  const addToCart = (cat) => {
-    setCart([...cart, cat]);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  // const toggleCatCartButton = () => {
+  //   setCatInBag(!catInBag);
+  //   if (catInBag == true) {
+  //     toggleCatCartButton(null);
+  //   }
+  // };
+
+  // const addToCart = (catToAdd) => {
+  //   // toggleCatCartButton();
+  //   setCart([...cart, catToAdd]);
+  // };
+
+  const removeFromCart = (catId) => {
+    const updatedCart = cart.map((cat) =>
+      cat.id === catId ? { ...cat, quantity: cat.quantity - 1 } : cat
+    );
+    setCart(updatedCart.filter((cat) => cat.quantity > 0));
   };
 
   return (
@@ -63,18 +88,31 @@ const App = () => {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
+        <button onClick={openModal}>Open Cart({cart.length})</button>
+        <CartModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          cart={cart}
+        />
       </nav>
-
       <Routes>
         <Route
           path="/"
-          element={<Home allCats={cats} addToCart={addToCart} />}
+          element={
+            <Home
+              allCats={cats}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              cart={cart}
+            />
+          }
         ></Route>
         <Route
           path="/about/:catId"
           element={<About singleCat={cats} />}
         ></Route>
-        <Route path="/cart" element={<Cart cart={cart} />} />
       </Routes>
     </BrowserRouter>
   );
