@@ -1,15 +1,35 @@
 .catImage {
-  border-radius: 25%;
+  border-radius: 15%;
+  max-width: 100%;
+  display: block;
 }
 
 .catGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   padding: 10px;
   margin: 10px;
   text-align: center;
+}
+
+#imgHolder {
+  position: relative;
+  display: inline-block;
+}
+
+.catGrid button {
+  position: absolute;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.catGrid img {
+  width: 200px;
+  height: 200px;
+  object-fit: fill;
 }
 
 button {
@@ -19,6 +39,8 @@ button {
   padding: 5px 10px;
   cursor: pointer;
   margin-top: 10px;
+  width: 100px;
+  height: 25px;
 }
 
 button:hover {
